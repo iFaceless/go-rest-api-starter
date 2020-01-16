@@ -19,3 +19,5 @@ go.sum
 .idea/
 
 coverage.out
+
+docker/*/pkg

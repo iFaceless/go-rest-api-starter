@@ -1,0 +1,60 @@
+version: '3'
+services:
+  mysql:
+    build:
+      context: ./mysql
+    environment:
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_DATABASE: go-starter
+      MYSQL_USER: root
+      MYSQL_PASSWORD:
+    container_name: go_starter_mysql
+    ports:
+      - "3306:3310"
+    networks:
+      - backend
+  web:
+    build:
+      context: ./web
+    volumes:
+      - "./web:/go/"
+    container_name: go_starter_web
+    environment:
+      APP_NAME: go-starter
+      UNIT_NAME: go-stater-web
+      DEPLOY_ENV: production
+      RES_MYSQL_GO_STARTER_MASTER_0_ADDR: root:@mysql:3306/go_starter
+      RES_MYSQL_GO_STARTER_SLAVE_0_ADDR: root:@mysql:3306/go_starter
+      SEQ_SERVER_ROOM_ID: 0
+      SEQ_SERVER_NODE_ID: 0
+    ports:
+      - "8001:8001"
+    tty: true
+    depends_on:
+      - mysql
+    networks:
+      - backend
+  admin:
+    build:
+      context: ./admin
+    volumes:
+      - "./admin:/go/"
+    container_name: go_starter_admin
+    environment:
+      APP_NAME: go-starter
+      UNIT_NAME: go-stater-admin
+      DEPLOY_ENV: production
+      RES_MYSQL_GO_STARTER_MASTER_0_ADDR: root:@mysql:3306/go_starter
+      RES_MYSQL_GO_STARTER_SLAVE_0_ADDR: root:@mysql:3306/go_starter
+      SEQ_SERVER_ROOM_ID: 0
+      SEQ_SERVER_NODE_ID: 0
+    ports:
+      - "8000:8000"
+    tty: true
+    depends_on:
+      - mysql
+    networks:
+      - backend
+
+networks:
+  backend:

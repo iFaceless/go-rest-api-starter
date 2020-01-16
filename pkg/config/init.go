@@ -1,8 +1,9 @@
 package config
 
 import (
-	"fmt"
 	"os"
+
+	"github.com/sirupsen/logrus"
 
 	"github.com/joho/godotenv"
 )
@@ -15,8 +16,7 @@ func init() {
 
 	err := godotenv.Load(envFile)
 	if err != nil {
-		fmt.Println(os.Getenv("DOT_ENV_FILE"))
-		panic(err)
+		logrus.Warnf("dot env file not found: %s", os.Getenv("DOT_ENV_FILE"))
 	}
 
 	discoverMySQLResource()
