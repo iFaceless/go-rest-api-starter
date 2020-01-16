@@ -14,3 +14,7 @@ func IsInProductionEnv() bool {
 func IsInDevelopmentEnv() bool {
 	return os.Getenv("DEPLOY_ENV") == deployEnvDevelopment
 }
+
+func AppName() string {
+	return os.Getenv("APP_NAME")
+}

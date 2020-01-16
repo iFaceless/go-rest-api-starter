@@ -17,3 +17,5 @@
 bin/
 go.sum
 .idea/
+
+coverage.out

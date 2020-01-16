@@ -17,8 +17,7 @@ type OutputProductSchema struct {
 	Intro         *string               `json:"intro,omitempty"`
 	Description   *OutputDocumentSchema `json:"description,omitempty" portal:"nested;async"`
 	IsInteractive *bool                 `json:"is_interactive,omitempty"`
-	ExperienceURL *string               `json:"experience_url,omitempty"`
-	Artworks      *pic.Pictures         `json:"artwork_urls,omitempty"`
+	Artworks      *pic.Pictures         `json:"artwork_urls,omitempty" portal:"AUTO_INIT"`
 	IsPublic      *bool                 `json:"is_public,omitempty"`
 	PublicAt      *field.Timestamp      `json:"public_at,omitempty"`
 	Company       OutputCompanySchema   `json:"company" portal:"nested;async"`

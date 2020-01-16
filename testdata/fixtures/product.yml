@@ -1,0 +1,27 @@
+table: product
+version: "1.0"
+rows:
+- id: "123"
+  company_id: "34254759485505536"
+  title: 测试
+  intro: 测试
+  desc_doc_id: "123"
+  artworks: '["v2-f8f2d20ee4cd5a1cc87c4ddba58f0078.jpg"]'
+  is_interactive: "1"
+  is_public: "0"
+  public_at: null
+  extra: ""
+  created_at: "2020-01-16 12:29:21"
+  updated_at: "2020-01-16 13:08:15"
+- id: "124"
+  company_id: "34254759485505536"
+  title: 测试
+  intro: 测试
+  desc_doc_id: "123"
+  artworks: ""
+  is_interactive: "1"
+  is_public: "0"
+  public_at: null
+  extra: ""
+  created_at: "2020-01-16 12:29:21"
+  updated_at: "2020-01-16 13:08:17"

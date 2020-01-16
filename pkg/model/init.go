@@ -2,9 +2,10 @@ package model
 
 import (
 	"fmt"
+	"net/url"
+
 	"github.com/ifaceless/go-starter/pkg/config"
 	"github.com/pkg/errors"
-	"net/url"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"

@@ -7,7 +7,7 @@ import (
 	"github.com/ifaceless/portal"
 )
 
-func GetCompanies(c *rest.Context) (rest.Response, error) {
+func GetCompanies(_ *rest.Context) (rest.Response, error) {
 	var outputs []schema.OutputCompanySchema
 
 	companies, err := controller.GetCompanies()

@@ -1,0 +1,17 @@
+table: company
+version: "1.0"
+rows:
+- id: "34254759485505536"
+  title: 知乎
+  intro: 可信赖的问答社区，以让每个人高效获得可信赖的解答为使命。
+  artworks: '["v2-f8f2d20ee4cd5a1cc87c4ddba58f0078.jpg"]'
+  url: https://www.zhihu.com
+  created_at: "2020-01-16 11:30:11"
+  updated_at: "2020-01-16 11:30:11"
+- id: "34254759699415040"
+  title: AIZOO
+  intro: AI 算法商城，还有算法乐园等你体验
+  artworks: '["v2-f8f2d20ee4cd5a1cc87c4ddba581223444.jpg"]'
+  url: https://aizoo.com
+  created_at: "2020-01-16 11:30:11"
+  updated_at: "2020-01-16 11:30:11"

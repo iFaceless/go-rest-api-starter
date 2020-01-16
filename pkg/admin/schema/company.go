@@ -8,7 +8,7 @@ import (
 type OutputCompanySchema struct {
 	ID        string           `json:"id"`
 	URL       string           `json:"url"`
-	Artworks  *pic.Pictures    `json:"artwork_urls"`
+	Artworks  *pic.Pictures    `json:"artwork_urls" portal:"AUTO_INIT"`
 	Title     string           `json:"title"`
 	Intro     string           `json:"intro"`
 	CreatedAt *field.Timestamp `json:"created_at"`

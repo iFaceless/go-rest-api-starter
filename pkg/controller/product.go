@@ -76,7 +76,7 @@ func CreateProduct(product *model.ProductModel, input *schema.InputProductSchema
 		// 创建产品
 		product.ID = prodID
 		product.DescDocID = docID
-		logrus.Infof("[controller.CreateProduct] create product: %s", &product)
+		logrus.Infof("[controller.CreateProduct] create product: %s", product)
 		err = tx.Create(&product).Error
 		if err != nil {
 			return err
@@ -88,7 +88,7 @@ func CreateProduct(product *model.ProductModel, input *schema.InputProductSchema
 			ContentHTML:     input.Description.ContentHTML,
 			ContentMarkdown: input.Description.ContentMarkdown,
 		}
-		logrus.Infof("[controller.CreateProduct] create doc %s for product %s", &doc, &product)
+		logrus.Infof("[controller.CreateProduct] create doc %s for product %s", &doc, product)
 		return tx.Create(&doc).Error
 	})
 	if err != nil {

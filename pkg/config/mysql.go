@@ -2,10 +2,10 @@ package config
 
 import (
 	"fmt"
-	"github.com/ifaceless/go-starter/pkg/util/toolkit/resource"
 
-	"github.com/joho/godotenv"
-	log "github.com/sirupsen/logrus"
+	"github.com/ifaceless/go-starter/pkg/util/toolkit/env"
+
+	"github.com/ifaceless/go-starter/pkg/util/toolkit/resource"
 )
 
 type DBConfig struct {
@@ -17,13 +17,8 @@ var (
 	MySQLConfig *DBConfig
 )
 
-func init() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Warnf("failed to load .env")
-	}
-
-	res, err := resource.DiscoverMySQL("go-starter")
+func discoverMySQLResource() {
+	res, err := resource.DiscoverMySQL(env.AppName())
 	if err != nil {
 		panic(err)
 	}
