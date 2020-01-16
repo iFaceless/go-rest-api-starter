@@ -4,13 +4,13 @@ services:
     build:
       context: ./mysql
     environment:
-      MYSQL_ROOT_PASSWORD:
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: go-starter
       MYSQL_USER: root
-      MYSQL_PASSWORD:
+      MYSQL_PASSWORD: root
     container_name: go_starter_mysql
     ports:
-      - "3306:3310"
+      - "3306:5000"
     networks:
       - backend
   web:
@@ -53,6 +53,8 @@ services:
     tty: true
     depends_on:
       - mysql
+    links:
+      - mysql:mysql
     networks:
       - backend
 
