@@ -5,14 +5,16 @@ services:
       context: ./mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: go-starter
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: go_starter
     container_name: go_starter_mysql
     ports:
-      - "3306:5000"
+      - "5000:3306"
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d/:ro
     networks:
       - backend
+    restart: always
   web:
     build:
       context: ./web
@@ -23,8 +25,8 @@ services:
       APP_NAME: go-starter
       UNIT_NAME: go-stater-web
       DEPLOY_ENV: production
-      RES_MYSQL_GO_STARTER_MASTER_0_ADDR: root:@mysql:3306/go_starter
-      RES_MYSQL_GO_STARTER_SLAVE_0_ADDR: root:@mysql:3306/go_starter
+      RES_MYSQL_GO_STARTER_MASTER_0_ADDR: root:root@mysql:3306/go_starter
+      RES_MYSQL_GO_STARTER_SLAVE_0_ADDR: root:root@mysql:3306/go_starter
       SEQ_SERVER_ROOM_ID: 0
       SEQ_SERVER_NODE_ID: 0
     ports:
@@ -34,29 +36,9 @@ services:
       - mysql
     networks:
       - backend
-  admin:
-    build:
-      context: ./admin
-    volumes:
-      - "./admin:/go/"
-    container_name: go_starter_admin
-    environment:
-      APP_NAME: go-starter
-      UNIT_NAME: go-stater-admin
-      DEPLOY_ENV: production
-      RES_MYSQL_GO_STARTER_MASTER_0_ADDR: root:@mysql:3306/go_starter
-      RES_MYSQL_GO_STARTER_SLAVE_0_ADDR: root:@mysql:3306/go_starter
-      SEQ_SERVER_ROOM_ID: 0
-      SEQ_SERVER_NODE_ID: 0
-    ports:
-      - "8000:8000"
-    tty: true
-    depends_on:
-      - mysql
     links:
-      - mysql:mysql
-    networks:
-      - backend
+      - "mysql:mysql"
+    command: ["./wait-for-it.sh", "mysql:3306", "--", "/apps/go-starter/bin/starter-web"]
 
 networks:
   backend:
