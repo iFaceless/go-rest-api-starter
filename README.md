@@ -101,8 +101,6 @@ DOT_ENV_FILE=.env ./bin/starter-admin
 DOT_ENV_FILE=.env ./bin/starter-web
 ```
 
-![](https://pic4.zhimg.com/v2-b24da64e022e50731b43769694bc62d7.png)
-
 ## 测试
 
 给 `controller/company` 添加了简单的测试，主要是演示如何使用 [fixture](https://github.com/ifaceless/fixture) 工具在测试开始时往测试库中建表并准备测试数据，并在测试结束时清理测试数据。
@@ -110,6 +108,17 @@ DOT_ENV_FILE=.env ./bin/starter-web
 在准备测试前，需要记得修改 `.env_unittest` 中关于测试库连接串信息，并且创建好 `test_go_starter` 数据库。需要注意的是，测试库必须要以 `test_` 开头，尽可能避免出错！
 
 一切就绪后，使用 `make test` 即可运行单元测试咯。
+
+# 在 Docker 中运行
+
+什么？上面的操作太麻烦了！我们为你提供了 `docker-compose.yml` 文件，只需要借助 `docker-compose` 即可一键启动：
+1. `cd docker`
+2. 构建 & 运行：`docker-compose run --build`
+3. 后台运行：`docker-compose run -d`
+4. 终止运行的实例：`docker-compose down -v`
+
+![](https://pic4.zhimg.com/80/v2-7e30fdab43678fc7014c57a143319e27.png)
+![](https://pic1.zhimg.com/80/v2-367f61e5a35ae8e4b6c78ffc608463e2.png)
 
 # RESTful API 说明
 ## 管理后台

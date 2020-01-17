@@ -9,12 +9,12 @@ services:
     container_name: go_starter_mysql
     ports:
       - "5000:3306"
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --explicit_defaults_for_timestamp
     volumes:
       - ./mysql/data:/var/lib/mysql
       - ./mysql/init:/docker-entrypoint-initdb.d/:ro
     networks:
       - backend
-    restart: always
   web:
     build:
       context: ./web
@@ -22,6 +22,7 @@ services:
       - "./web:/go/"
     container_name: go_starter_web
     environment:
+      GIN_MODE: release
       APP_NAME: go-starter
       UNIT_NAME: go-stater-web
       DEPLOY_ENV: production
@@ -38,7 +39,7 @@ services:
       - backend
     links:
       - "mysql:mysql"
-    command: [ "./wait-for-it.sh", "mysql:3306", "--", "/apps/go-starter/bin/starter-web" ]
+    command: [ "./wait-for-it.sh", "mysql:3306", "--timeout=300", "--", "bin/starter-web" ]
   admin:
     build:
       context: ./admin
@@ -46,6 +47,7 @@ services:
       - "./admin:/go/"
     container_name: go_starter_admin
     environment:
+      GIN_MODE: release
       APP_NAME: go-starter
       UNIT_NAME: go-stater-admin
       DEPLOY_ENV: production
@@ -62,7 +64,7 @@ services:
       - backend
     links:
       - "mysql:mysql"
-    command: [ "./wait-for-it.sh", "mysql:3306", "--", "/apps/go-starter/bin/starter-admin" ]
+    command: [ "./wait-for-it.sh", "mysql:3306", "--timeout=300", "--", "bin/starter-admin" ]
 
 networks:
   backend:

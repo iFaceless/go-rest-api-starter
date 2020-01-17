@@ -22,4 +22,3 @@ coverage.out
 
 docker/*/pkg
 docker/*/data
-docker/*/init
