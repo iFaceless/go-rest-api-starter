@@ -7,8 +7,6 @@ RUN apt-get install git
 RUN git clone https://github.com/iFaceless/go-rest-api-starter.git go-starter
 
 WORKDIR /apps/go-starter
-RUN go mod download
-RUN make admin
-RUN rm .env
+RUN go mod download && make admin && rm .env
 
-CMD ["bin/starter-admin"]
+RUN wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && chmod a+x ./wait-for-it.sh

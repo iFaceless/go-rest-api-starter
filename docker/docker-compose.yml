@@ -38,7 +38,31 @@ services:
       - backend
     links:
       - "mysql:mysql"
-    command: ["./wait-for-it.sh", "mysql:3306", "--", "/apps/go-starter/bin/starter-web"]
+    command: [ "./wait-for-it.sh", "mysql:3306", "--", "/apps/go-starter/bin/starter-web" ]
+  admin:
+    build:
+      context: ./admin
+    volumes:
+      - "./admin:/go/"
+    container_name: go_starter_admin
+    environment:
+      APP_NAME: go-starter
+      UNIT_NAME: go-stater-admin
+      DEPLOY_ENV: production
+      RES_MYSQL_GO_STARTER_MASTER_0_ADDR: root:root@mysql:3306/go_starter
+      RES_MYSQL_GO_STARTER_SLAVE_0_ADDR: root:root@mysql:3306/go_starter
+      SEQ_SERVER_ROOM_ID: 0
+      SEQ_SERVER_NODE_ID: 0
+    ports:
+      - "8000:8000"
+    tty: true
+    depends_on:
+      - mysql
+    networks:
+      - backend
+    links:
+      - "mysql:mysql"
+    command: [ "./wait-for-it.sh", "mysql:3306", "--", "/apps/go-starter/bin/starter-admin" ]
 
 networks:
   backend:
