@@ -119,10 +119,11 @@ DOT_ENV_FILE=.env ./bin/starter-web
 
 ![](https://pic4.zhimg.com/80/v2-7e30fdab43678fc7014c57a143319e27.png)
 ![](https://pic1.zhimg.com/80/v2-367f61e5a35ae8e4b6c78ffc608463e2.png)
+![](https://pic3.zhimg.com/v2-5a71f6795e0975a235d0edcbdc714650.jpg)
 
 # RESTful API 说明
 ## 管理后台
-- 产品列表：`GET /v1/products`
+- 产品列表：`GET /v1/products[?offset=0&limit=10&only=id]`
 - 新建产品：`POST /v1/products`
 - 查看产品：`GET /v1/products/:product_id`
 - 更新产品：`PUT /v1/products/:product_id`

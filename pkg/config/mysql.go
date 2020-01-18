@@ -17,6 +17,7 @@ var (
 	MySQLConfig *DBConfig
 )
 
+// discoverMySQLResource 借助简单的资源发现库填充 MySQL 连接串配置
 func discoverMySQLResource() {
 	res, err := resource.DiscoverMySQL(env.AppName())
 	if err != nil {

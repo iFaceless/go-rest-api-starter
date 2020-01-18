@@ -20,7 +20,7 @@ type OutputProductSchema struct {
 	Artworks      *pic.Pictures         `json:"artwork_urls,omitempty" portal:"AUTO_INIT"`
 	IsPublic      *bool                 `json:"is_public,omitempty"`
 	PublicAt      *field.Timestamp      `json:"public_at,omitempty"`
-	Company       OutputCompanySchema   `json:"company" portal:"nested;async"`
+	Company       *OutputCompanySchema  `json:"company,omitempty" portal:"nested;async"`
 	CreatedAt     *field.Timestamp      `json:"created_at,omitempty"`
 	UpdatedAt     *field.Timestamp      `json:"updated_at,omitempty"`
 }

@@ -7,6 +7,7 @@ RUN apt-get install git
 RUN git clone https://github.com/iFaceless/go-rest-api-starter.git go-starter
 
 WORKDIR /apps/go-starter
+RUN go env -w GOPROXY=https://goproxy.cn,direct
 RUN go mod download && make admin && rm .env
 
-RUN wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && chmod a+x ./wait-for-it.sh
+RUN wget http://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && chmod a+x ./wait-for-it.sh

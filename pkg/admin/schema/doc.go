@@ -3,9 +3,9 @@ package schema
 import "github.com/ifaceless/portal/field"
 
 type OutputDocumentSchema struct {
-	ID              string           `json:"id"`
-	ContentHTML     string           `json:"content_html"`
-	ContentMarkdown string           `json:"content_markdown"`
+	ID              *string          `json:"id"`
+	ContentHTML     *string          `json:"content_html,omitempty"`
+	ContentMarkdown *string          `json:"content_markdown,omitempty"`
 	CreatedAt       *field.Timestamp `json:"created_at,omitempty"`
 	UpdatedAt       *field.Timestamp `json:"updated_at,omitempty"`
 }

@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"strings"
+
 	"github.com/ifaceless/go-starter/pkg/controller"
 
 	"github.com/gin-gonic/gin"
@@ -20,7 +22,8 @@ func GetProducts(c *rest.Context) (rest.Response, error) {
 	)
 
 	var schemas []schema.OutputProductSchema
-	err = portal.Dump(&schemas, products)
+	// 借助 portal.Only，可以在请求的时候指定只吐出需要的字段值
+	err = portal.Dump(&schemas, products, portal.Only(strings.Split(c.QueryWithFallback("only", ""), ",")...))
 	if err != nil {
 		return nil, err
 	}

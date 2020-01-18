@@ -1,3 +1,4 @@
+// Package config 定义了一些资源配置，尝试从环境变量获取这些配置
 package config
 
 import (
