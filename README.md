@@ -145,5 +145,5 @@ DOT_ENV_FILE=.env ./bin/starter-web
 
 # 反馈
 
-项目仅供参考，如有任何问题，欢迎在 issue 提出，谢谢~
+项目仅供参考，如有任何问题，欢迎在 issue 提出，谢谢。
 
